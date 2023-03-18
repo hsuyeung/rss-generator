@@ -1,4 +1,4 @@
-package com.hsuyeung.blog.rss;
+package com.hsuyeung.rss;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;

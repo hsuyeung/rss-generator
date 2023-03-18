@@ -1,4 +1,4 @@
-package com.hsuyeung.blog.rss;
+package com.hsuyeung.rss;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

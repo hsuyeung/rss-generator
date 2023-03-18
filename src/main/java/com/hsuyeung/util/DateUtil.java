@@ -1,4 +1,4 @@
-package com.hsuyeung.rss;
+package com.hsuyeung.util;
 
 
 import java.time.*;

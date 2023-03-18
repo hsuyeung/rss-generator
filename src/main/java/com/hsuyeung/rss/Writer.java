@@ -1,9 +1,5 @@
-package com.hsuyeung.blog.rss;
+package com.hsuyeung.rss;
 
-import com.hsuyeung.blog.util.AssertUtil;
-import org.springframework.http.MediaType;
-
-import javax.validation.constraints.NotNull;
 import javax.xml.stream.XMLEventFactory;
 import javax.xml.stream.XMLEventWriter;
 import javax.xml.stream.XMLOutputFactory;
@@ -33,16 +29,24 @@ public class Writer {
      */
     private final String outputFilePath;
 
-    public Writer(@NotNull RSS rss, @NotNull File outputFile) {
-        AssertUtil.notNull(rss, "feed can not be null");
-        AssertUtil.notNull(outputFile, "outputFile can not be null");
+    public Writer(RSS rss, File outputFile) {
+        if (rss == null) {
+            throw new NullPointerException("feed can not be null");
+        }
+        if (outputFile == null) {
+            throw new NullPointerException("outputFile can not be null");
+        }
         this.rss = rss;
         this.outputFilePath = outputFile.getPath();
     }
 
-    public Writer(@NotNull RSS rss, @NotNull String outputFilePath) {
-        AssertUtil.notNull(rss, "feed can not be null");
-        AssertUtil.notNull(outputFilePath, "outputFilePath can not be null");
+    public Writer(RSS rss, String outputFilePath) {
+        if (rss == null) {
+            throw new NullPointerException("feed can not be null");
+        }
+        if (outputFilePath == null) {
+            throw new NullPointerException("outputFilePath can not be null");
+        }
         this.rss = rss;
         this.outputFilePath = outputFilePath;
     }
@@ -82,7 +86,7 @@ public class Writer {
         eventWriter.add(eventFactory.createStartElement("", "", "atom:link"));
         eventWriter.add(eventFactory.createAttribute("href", String.format("%s/feed", rss.getLink())));
         eventWriter.add(eventFactory.createAttribute("rel", "self"));
-        eventWriter.add(eventFactory.createAttribute("type", MediaType.APPLICATION_RSS_XML_VALUE));
+        eventWriter.add(eventFactory.createAttribute("type", "application/rss+xml"));
         eventWriter.add(eventFactory.createEndElement("", "", "atom:link"));
         eventWriter.add(end);
 
